@@ -7,9 +7,9 @@ LOCAL_DIR=(
 	"/home/arch06/ansible_wp"       # Local directory to back up
 	"/home/arch06/ansible"
 )
-REMOTE_USER="sky"                	# Remote server username
-REMOTE_SERVER="172.17.0.2"      	# Remote server IP or hostname
-REMOTE_DIR="/home/sky/"           	# Remote backup directory
+REMOTE_USER="server1"                	# Remote server username
+REMOTE_SERVER="10.0.0.161"      	# Remote server IP or hostname
+REMOTE_DIR="/mnt/backup_lv/"           	# Remote backup directory
 LOG_FILE="/var/log/backup_server.log"
 
 
@@ -24,7 +24,7 @@ log_message() {
 for DIR in "${LOCAL_DIR[@]}"; do
 	echo "backing up $DIR"
 
-	if rsync -avz -e "ssh -i /home/arch06/.ssh/id_rsa" --delete "$DIR/" "$REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIR$(basename "$DIR")/"; then
+	if sudo rsync -avz -e "ssh -i /home/arch06/.ssh/id_rsa" --delete "$DIR/" "$REMOTE_USER@$REMOTE_SERVER:$REMOTE_DIR$(basename "$DIR")/"; then
 	log_message "Backup of $DIR completed succesfully"
 	
 	else
