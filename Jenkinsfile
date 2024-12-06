@@ -7,5 +7,11 @@ pipeline {
       }
     }
 
+    stage('List_cm') {
+      steps {
+        sh 'ls -la'
+      }
+    }
+
   }
 }
