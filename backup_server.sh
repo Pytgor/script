@@ -2,7 +2,6 @@
 
 # Backup Script to Remote Server using rsync
 
-# Set variables
 LOCAL_DIR=(
 	"/home/arch06/ansible_wp"       # Local directory to back up
 	"/home/arch06/ansible"
